@@ -11,8 +11,8 @@ const SheardMenu = ({item}) => {
             <div>
                 <div className='md:flex justify-between'>
 
-                <h3 className='font-semibold text-lg'>{item?item.name:""} ---</h3>
-            <h2 className='text-[#0587C7] font-bold'>${item?item.price:""}</h2>
+                <h3 className='font-semibold text-lg text-brand'>{item?item.name:""} ---</h3>
+            <h2 className='text-brand2 font-bold'>${item?item.price:""}</h2>
                 </div>
                 <p>{item?item.recipe:""}</p>
             </div>
