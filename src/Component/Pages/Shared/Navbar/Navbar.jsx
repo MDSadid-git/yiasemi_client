@@ -44,7 +44,7 @@ const Navbar = () => {
       >
         <Link
           onClick={homeDropdownClose}
-          className="flex group items-center py-[14px] text-pink-500 hover:translate-x-1 duration-300 uppercase  text-[14px] "
+          className="flex group items-center py-[14px] text-brand2 hover:translate-x-1 duration-300 uppercase  text-[14px] "
         >
           <span>Home</span>
         </Link>
@@ -56,7 +56,7 @@ const Navbar = () => {
                 onClick={isMenuOpen}
                 title="Home1"
                 to="/"
-                className="block px-4 text-pink-500 text-[14px] hover:translate-x-1 duration-300"
+                className="block px-4 text-brand2 text-[14px] hover:translate-x-1 duration-300"
               >
                 Home1
               </Link>
@@ -83,7 +83,7 @@ const Navbar = () => {
       >
         <Link
           onClick={pagesDropdownClose}
-          className="flex group items-center text-pink-500 py-[14px] hover:translate-x-1 duration-300 uppercase  text-[14px] "
+          className="flex group items-center text-brand2 py-[14px] hover:translate-x-1 duration-300 uppercase  text-[14px] "
         >
           <span>Pages</span>
         </Link>
@@ -162,7 +162,7 @@ const Navbar = () => {
       >
         <Link
           onClick={clinicsDropdownClose}
-          className="flex group items-center py-[14px] text-pink-500  hover:translate-x-1 duration-300 uppercase  text-[14px]"
+          className="flex group items-center py-[14px] text-brand2  hover:translate-x-1 duration-300 uppercase  text-[14px]"
         >
           <span>Blog</span>
         </Link>
@@ -213,7 +213,7 @@ const Navbar = () => {
       >
         <Link
           onClick={blogDropdownClose}
-          className="flex group items-center py-[14px] text-pink-500 hover:translate-x-1 duration-300 uppercase  text-[14px] "
+          className="flex group items-center py-[14px] text-brand2 hover:translate-x-1 duration-300 uppercase  text-[14px] "
         >
           <span>Items</span>
         </Link>
@@ -244,7 +244,7 @@ const Navbar = () => {
         <Link
           onClick={doctorsDropdownClose}
           to="/"
-          className="flex group items-center py-[14px] text-pink-500 hover:translate-x-1 duration-300 uppercase  text-[14px] "
+          className="flex group items-center py-[14px] text-brand2 hover:translate-x-1 duration-300 uppercase  text-[14px] "
         >
           <span>Service</span>
         </Link>
@@ -270,7 +270,7 @@ const Navbar = () => {
           onClick={isMenuOpen}
           title="Contact us"
           to="/contact"
-          className="flex group items-center py-[14px] text-pink-500 hover:translate-x-1 duration-300 uppercase  text-[14px]"
+          className="flex group items-center py-[14px] text-brand2 hover:translate-x-1 duration-300 uppercase  text-[14px]"
         >
           Contact us
         </Link>
@@ -291,7 +291,7 @@ const Navbar = () => {
             className="inline-flex items-center"
           >
             {/* <img src={colorLogo} alt="" className="w-40" /> */}
-            <h1 className="w-40 font-bold text-[#0587C7] italic ">Yiasmi <br /> Lounge</h1>
+            <h1 className="w-40 font-bold text-brand italic ">Yiasmi <br /> Lounge</h1>
             <h2></h2>
             
           </Link>
