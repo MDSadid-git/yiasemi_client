@@ -1,14 +1,14 @@
 import React from "react";
 import BistroImage from "../../../Assets/home/featured.jpg";
 import SectionTitle from "../../../ComponentShered/SectionTitile/SectionTitle";
-import "./BistroBoss.css";
+import "./YiasemiLounge.css";
 
-const BistroBoss = () => {
+const YiasemiLounge = () => {
   return (
     <div>
-      <div className="BistroItem py-10 bg-black opacity-80 bg-fixed">
+      <div className="yiasemiLounge py-10 bg-black opacity-80 bg-fixed">
         <div className="max-w-screen-xl mx-auto py-5 px-5 bg-white opacity-80">
-          <SectionTitle heading="Bistro Boss" subHeading="it Out" />
+          <SectionTitle heading="Yiasmi Lounge" subHeading="it Out" />
           <div className=" md:flex space-x-5 justify-center items-center font-semibold">
             <div>
               <h4 className="uppercase">Where can i get some one?</h4>
@@ -42,9 +42,9 @@ const BistroBoss = () => {
                   </svg>
                 </span>
                 <span class="absolute flex items-center justify-center w-full h-full text-brand transition-all duration-300 transform group-hover:translate-x-full ease">
-                  Bistro Boss
+                  Yiasemi Lounge
                 </span>
-                <span class="relative invisible">Bistro Boss</span>
+                <span class="relative invisible">Yiasemi Lounge</span>
               </a>
             </div>
           </div>
@@ -54,4 +54,4 @@ const BistroBoss = () => {
   );
 };
 
-export default BistroBoss;
+export default YiasemiLounge;
