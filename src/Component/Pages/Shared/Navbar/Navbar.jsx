@@ -48,7 +48,7 @@ const Navbar = () => {
         >
           <span>Home</span>
         </Link>
-{/* 
+        {/* 
         {homeDropdownOpen && (
           <ul className="dropdown-menu  rounded-b-lg w-32 pt-1 absolute top-auto bg-white block z-50 duration-300 group-hover:translate-y-1 ease-in-out ">
             <li className="py-1/2 mb-[1px] hover:bg-secondary duration-300 bg-brand py-2 text-secondary hover:text-brand">
@@ -204,7 +204,6 @@ const Navbar = () => {
         )}
       </li>
       {/* clinics end here */}
-
       <li
         className="font-bold nav-item  text-[14px] text-black  hover:text-brand duration-300  "
         onMouseEnter={toggleBlogDropdown}
@@ -234,7 +233,6 @@ const Navbar = () => {
         )}
       </li>
       {/* blog end here */}
-
       <li
         className="font-bold nav-item  text-[14px] text-black  hover:text-brand duration-300"
         onMouseEnter={toggleDoctorDropdown}
@@ -264,7 +262,18 @@ const Navbar = () => {
         )}
       </li>
       {/* doctors end here */}
-
+      {/* Yiasem All Menu  */}
+      <li className="font-bold nav-item  text-[14px] text-black  hover:text-brand duration-300">
+        <Link
+          onClick={isMenuOpen}
+          title="Menu"
+          to="/menu"
+          className="flex group items-center py-[14px] text-brand2 hover:translate-x-1 duration-300 uppercase  text-[14px]"
+        >
+          Menu
+        </Link>
+      </li>{" "}
+      {/* Yiasem all menu end */}
       <li className="font-bold nav-item  text-[14px] text-black  hover:text-brand duration-300">
         <Link
           onClick={isMenuOpen}
@@ -275,7 +284,6 @@ const Navbar = () => {
           Contact us
         </Link>
       </li>
-
       {/* <li></li> */}
     </>
   );
@@ -291,9 +299,10 @@ const Navbar = () => {
             className="inline-flex items-center"
           >
             {/* <img src={colorLogo} alt="" className="w-40" /> */}
-            <h1 className="w-40 font-bold text-brand italic ">Yiasmi <br /> Lounge</h1>
+            <h1 className="w-40 font-bold text-brand italic ">
+              Yiasmi <br /> Lounge
+            </h1>
             <h2></h2>
-            
           </Link>
           <ul className="items-center nav-list hidden space-x-8 lg:flex">
             {menuItems}
