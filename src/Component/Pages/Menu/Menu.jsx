@@ -7,6 +7,7 @@ import MenuCategory from "../Shared/MenuCategory/MenuCategory";
 import SectionTitle from "../../ComponentShered/SectionTitile/SectionTitle";
 import dessertImage from "../../Assets/menu/dessert-bg.jpeg";
 import pizzaImage from "../../Assets/menu/pizza-bg.jpg";
+import saladImage from "../../Assets/menu/salad-bg.jpg";
 
 const Menu = () => {
   const [menu] = useMenu();
@@ -57,6 +58,16 @@ const Menu = () => {
         menuTitle={"pizza"}
       />
       {/* Pizza area end */}
+      {/* salad area start */}
+      <MenuCategory
+        allItem={salad}
+        img={saladImage}
+        menuDesctription={
+          "      Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum, perspiciatis? Nulla aliquam placeat voluptas, facere molestias nisi ullam quibusdam quasi repudiandae hic officiis laborum praesentium reprehenderit veritatis dicta cum mollitia?"
+        }
+        menuTitle={"salads"}
+      />
+      {/* salad area end */}
     </div>
   );
 };
