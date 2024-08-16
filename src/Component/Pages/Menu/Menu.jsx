@@ -2,8 +2,9 @@ import React from "react";
 import { Helmet } from "react-helmet-async";
 import PageCover from "../Shared/PageCover/PageCover";
 import sectionImageHeader from "../../Assets/menu/banner3.jpg";
-// import PopluerMenu from "../Home/PopluerMenu/PopluerMenu";
 import useMenu from "../../Hooks/useMenu";
+import MenuCategory from "../Shared/MenuCategory/MenuCategory";
+import SectionTitle from "../../ComponentShered/SectionTitile/SectionTitle";
 const Menu = () => {
   const [menu] = useMenu();
   const PopluerMenu = menu.filter((item) => item.category === "popular");
@@ -23,7 +24,10 @@ const Menu = () => {
         menuTitle={"Our Menu"}
         menuDesctription={"Would You Like to Try A Dish"}
       />
-      {/* <PopluerMenu /> */}
+
+      {/* todays Ours Offered  */}
+      <SectionTitle heading="Don't Miss" subHeading="Todays Offered" />
+      <MenuCategory />
     </div>
   );
 };
