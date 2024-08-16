@@ -4,7 +4,7 @@ const PageCover = ({ coverImg, menuTitle, menuDesctription }) => {
   return (
     <div>
       <div
-        className="hero md:h-[600px] h[400px]"
+        className="hero md:h-[600px] h[400px] bg-fixed"
         style={{
           backgroundImage: `url(${coverImg})`,
         }}

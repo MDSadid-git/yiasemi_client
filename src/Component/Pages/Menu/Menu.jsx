@@ -5,6 +5,9 @@ import sectionImageHeader from "../../Assets/menu/banner3.jpg";
 import useMenu from "../../Hooks/useMenu";
 import MenuCategory from "../Shared/MenuCategory/MenuCategory";
 import SectionTitle from "../../ComponentShered/SectionTitile/SectionTitle";
+import dessertImage from "../../Assets/menu/dessert-bg.jpeg";
+import pizzaImage from "../../Assets/menu/pizza-bg.jpg";
+
 const Menu = () => {
   const [menu] = useMenu();
   const PopluerMenu = menu.filter((item) => item.category === "popular");
@@ -31,6 +34,29 @@ const Menu = () => {
       <SectionTitle heading="Don't Miss" subHeading="Todays Offered" />
       <MenuCategory allItem={offered} />
       {/* todays ours area end */}
+
+      {/* dessert area start */}
+      <MenuCategory
+        allItem={dessert}
+        img={dessertImage}
+        menuDesctription={
+          "      Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum, perspiciatis? Nulla aliquam placeat voluptas, facere molestias nisi ullam quibusdam quasi repudiandae hic officiis laborum praesentium reprehenderit veritatis dicta cum mollitia?"
+        }
+        menuTitle={"Dessert"}
+      />
+
+      {/* dessert area end */}
+
+      {/* Pizza area start */}
+      <MenuCategory
+        allItem={pizza}
+        img={pizzaImage}
+        menuDesctription={
+          "      Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum, perspiciatis? Nulla aliquam placeat voluptas, facere molestias nisi ullam quibusdam quasi repudiandae hic officiis laborum praesentium reprehenderit veritatis dicta cum mollitia?"
+        }
+        menuTitle={"pizza"}
+      />
+      {/* Pizza area end */}
     </div>
   );
 };
