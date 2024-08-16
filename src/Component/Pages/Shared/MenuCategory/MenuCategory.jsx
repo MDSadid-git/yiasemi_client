@@ -1,5 +1,6 @@
 import React from "react";
 import PageCover from "../PageCover/PageCover";
+import SheardMenu from "../../../ComponentShered/SheardMenu/SheardMenu";
 
 const MenuCategory = ({ allItem, img, menuDesctription, menuTitle }) => {
   return (
@@ -40,11 +41,9 @@ const MenuCategory = ({ allItem, img, menuDesctription, menuTitle }) => {
                 </svg>
               </span>
               <span class="absolute flex items-center justify-center w-full h-full text-brand transition-all duration-300 transform group-hover:translate-x-full ease">
-                View Full {menuTitle ? menuTitle : ""}
+                Order Your Foods
               </span>
-              <span class="relative invisible">
-                View Full {menuTitle ? menuTitle : ""}
-              </span>
+              <span class="relative invisible">Order Your Foods</span>
             </a>
           </div>
         </section>
