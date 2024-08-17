@@ -274,6 +274,18 @@ const Navbar = () => {
         </Link>
       </li>{" "}
       {/* Yiasem all menu end */}
+      {/* Yiasem All Menu  */}
+      <li className="font-bold nav-item  text-[14px] text-black  hover:text-brand duration-300">
+        <Link
+          onClick={isMenuOpen}
+          title="Order"
+          to="/order"
+          className="flex group items-center py-[14px] text-brand2 hover:translate-x-1 duration-300 uppercase  text-[14px]"
+        >
+          Order
+        </Link>
+      </li>{" "}
+      {/* Yiasem all menu end */}
       <li className="font-bold nav-item  text-[14px] text-black  hover:text-brand duration-300">
         <Link
           onClick={isMenuOpen}
