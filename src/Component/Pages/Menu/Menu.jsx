@@ -11,13 +11,7 @@ import saladImage from "../../Assets/menu/salad-bg.jpg";
 import soupImage from "../../Assets/menu/soup-bg.jpg";
 
 const Menu = () => {
-  const [menu] = useMenu();
-  const PopluerMenu = menu.filter((item) => item.category === "popular");
-  const dessert = menu.filter((item) => item.category === "dessert");
-  const soup = menu.filter((item) => item.category === "soup");
-  const salad = menu.filter((item) => item.category === "salad");
-  const pizza = menu.filter((item) => item.category === "pizza");
-  const offered = menu.filter((item) => item.category === "offered");
+  const [dessert, soup, salad, pizza, offered] = useMenu();
 
   return (
     <div>
