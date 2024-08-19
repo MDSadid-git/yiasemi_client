@@ -5,9 +5,11 @@ import PageCover from "../Shared/PageCover/PageCover";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import FoodCard from "../Shared/FoodCard/FoodCard";
+import useMenu from "../../Hooks/useMenu";
 
 const Order = () => {
   const [tabsIndex, setTabsIndex] = useState(0);
+  const [dessert, soup, salad, pizza, drinks] = useMenu();
   return (
     <div>
       <Helmet>
@@ -26,15 +28,37 @@ const Order = () => {
           onSelect={(index) => setTabsIndex(index)}
         >
           <TabList>
-            <Tab>Title 1</Tab>
-            <Tab>Title 2</Tab>
+            <Tab>Dessert</Tab>
+            <Tab>Soup</Tab>
+            <Tab>Salad</Tab>
+            <Tab>Pizza</Tab>
+            <Tab>Drinks</Tab>
           </TabList>
 
           <TabPanel>
-            <FoodCard />
+            <div className="flex justify-between">
+              <FoodCard items={dessert} />
+            </div>
           </TabPanel>
           <TabPanel>
-            <h2>Any content 2</h2>
+            <div className="flex justify-between">
+              <FoodCard items={soup} />
+            </div>
+          </TabPanel>
+          <TabPanel>
+            <div className="flex justify-between">
+              <FoodCard items={salad} />
+            </div>
+          </TabPanel>
+          <TabPanel>
+            <div className="flex justify-between">
+              <FoodCard items={pizza} />
+            </div>
+          </TabPanel>
+          <TabPanel>
+            <div className="flex justify-between">
+              <FoodCard items={drinks} />
+            </div>
           </TabPanel>
         </Tabs>
       </section>

@@ -1,6 +1,7 @@
 import React from "react";
 import PageCover from "../PageCover/PageCover";
 import SheardMenu from "../../../ComponentShered/SheardMenu/SheardMenu";
+import { Link } from "react-router-dom";
 
 const MenuCategory = ({ allItem, img, menuDesctription, menuTitle }) => {
   return (
@@ -20,8 +21,8 @@ const MenuCategory = ({ allItem, img, menuDesctription, menuTitle }) => {
             ))}
           </div>
           <div>
-            <a
-              href="#_"
+            <Link
+              to={"/order"}
               class="relative inline-flex my-5 items-center justify-center p-4 px-6 py-1 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out border-2 border-brand rounded-full shadow-md group"
             >
               <span class="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-brand group-hover:translate-x-0 ease">
@@ -44,7 +45,7 @@ const MenuCategory = ({ allItem, img, menuDesctription, menuTitle }) => {
                 Order Your Foods
               </span>
               <span class="relative invisible">Order Your Foods</span>
-            </a>
+            </Link>
           </div>
         </section>
       )}

@@ -17,7 +17,18 @@ const useMenu = () => {
   const salad = menu.filter((item) => item.category === "salad");
   const pizza = menu.filter((item) => item.category === "pizza");
   const offered = menu.filter((item) => item.category === "offered");
-  return [menu, PopluerMenu, dessert, soup, salad, pizza, offered, loding];
+  const drinks = menu.filter((item) => item.category === "drinks");
+  return [
+    menu,
+    PopluerMenu,
+    dessert,
+    soup,
+    salad,
+    pizza,
+    offered,
+    drinks,
+    loding,
+  ];
 };
 
 export default useMenu;
