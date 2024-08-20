@@ -8,6 +8,7 @@ import FoodCard from "../Shared/FoodCard/FoodCard";
 import useMenu from "../../Hooks/useMenu";
 
 const Order = () => {
+  const categorys = ["dessert", "soup", "salad", "pizza", "drinks"];
   const [tabsIndex, setTabsIndex] = useState(0);
   const [dessert, soup, salad, pizza, drinks] = useMenu();
   return (
