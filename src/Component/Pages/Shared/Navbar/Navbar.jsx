@@ -279,7 +279,7 @@ const Navbar = () => {
         <Link
           onClick={isMenuOpen}
           title="Order"
-          to="/order"
+          to="/order/dessert"
           className="flex group items-center py-[14px] text-brand2 hover:translate-x-1 duration-300 uppercase  text-[14px]"
         >
           Order

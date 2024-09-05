@@ -6,16 +6,19 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import FoodCard from "../Shared/FoodCard/FoodCard";
 import useMenu from "../../Hooks/useMenu";
+import { useParams } from "react-router-dom";
 
 const Order = () => {
   const categorys = ["dessert", "soup", "salad", "pizza", "drinks"];
-  const [tabsIndex, setTabsIndex] = useState(0);
+  const { category } = useParams();
+  const initialIndex = categorys.indexOf(category);
   const [dessert, soup, salad, pizza, drinks] = useMenu();
+  const [tabsIndex, setTabsIndex] = useState(initialIndex);
   return (
     <div>
       <Helmet>
         {" "}
-        <title>Yiasemi Lounge \ Order</title>
+        <title>Yiasemi Lounge \ Order Food</title>
       </Helmet>
       <PageCover
         coverImg={orderCoverImg}

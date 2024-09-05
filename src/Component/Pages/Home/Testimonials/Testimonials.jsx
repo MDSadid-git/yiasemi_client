@@ -16,7 +16,6 @@ const Testimonials = () => {
       .then((res) => res.json())
       .then((data) => setreviews(data));
   });
-  console.log(reviews);
   return (
     <div className="max-w-screen-xl mx-auto my-5 px-5">
       <SectionTitle heading="What Our Client Say" subHeading="Testimonial" />

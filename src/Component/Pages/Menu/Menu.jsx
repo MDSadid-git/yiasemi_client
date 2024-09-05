@@ -38,7 +38,7 @@ const Menu = () => {
         menuDesctription={
           "      Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum, perspiciatis? Nulla aliquam placeat voluptas, facere molestias nisi ullam quibusdam quasi repudiandae hic officiis laborum praesentium reprehenderit veritatis dicta cum mollitia?"
         }
-        menuTitle={"Dessert"}
+        menuTitle={"dessert"}
       />
 
       {/* dessert area end */}
@@ -60,7 +60,7 @@ const Menu = () => {
         menuDesctription={
           "      Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum, perspiciatis? Nulla aliquam placeat voluptas, facere molestias nisi ullam quibusdam quasi repudiandae hic officiis laborum praesentium reprehenderit veritatis dicta cum mollitia?"
         }
-        menuTitle={"salads"}
+        menuTitle={"salad"}
       />
       {/* salad area end */}
       {/* soup area start */}
@@ -70,7 +70,7 @@ const Menu = () => {
         menuDesctription={
           "      Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum, perspiciatis? Nulla aliquam placeat voluptas, facere molestias nisi ullam quibusdam quasi repudiandae hic officiis laborum praesentium reprehenderit veritatis dicta cum mollitia?"
         }
-        menuTitle={"soups"}
+        menuTitle={"soup"}
       />
       {/* soup area end */}
     </div>

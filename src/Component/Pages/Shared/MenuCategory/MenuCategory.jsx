@@ -42,9 +42,9 @@ const MenuCategory = ({ allItem, img, menuDesctription, menuTitle }) => {
                 </svg>
               </span>
               <span class="absolute flex items-center justify-center w-full h-full text-brand transition-all duration-300 transform group-hover:translate-x-full ease">
-                Order Your Foods
+                Order {menuTitle}
               </span>
-              <span class="relative invisible">Order Your Foods</span>
+              <span class="relative invisible">Order {menuTitle}</span>
             </Link>
           </div>
         </section>

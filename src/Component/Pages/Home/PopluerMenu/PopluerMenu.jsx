@@ -4,8 +4,9 @@ import SheardMenu from "../../../ComponentShered/SheardMenu/SheardMenu";
 import useMenu from "../../../Hooks/useMenu";
 
 const PopluerMenu = () => {
-  const [menu] = useMenu();
-  const PopluerMenu = menu.filter((item) => item.category === "popular");
+  const [menu, PopluerMenu] = useMenu();
+
+  // const PopluerMenu = menu.filter((item) => item.category === "popular");
   // const [menu, setMenu] = useState([]);
   // useEffect(() => {
   //   fetch("menu.json")
