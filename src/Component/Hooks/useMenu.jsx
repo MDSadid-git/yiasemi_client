@@ -4,21 +4,23 @@ const useMenu = () => {
   const [menu, setMenu] = useState([]);
   const [loding, setLoading] = useState(true);
   useEffect(() => {
-    fetch("menu.json")
+    fetch("http://localhost:8000/api/v1/menus/alldata")
       .then((res) => res.json())
       .then((data) => {
-        setMenu(data);
+        setMenu(data.allMenu);
         setLoading(false);
       });
   });
-  const PopluerMenu = menu.filter((item) => item.category === "popular");
+
   const dessert = menu.filter((item) => item.category === "dessert");
   const soup = menu.filter((item) => item.category === "soup");
   const salad = menu.filter((item) => item.category === "salad");
   const pizza = menu.filter((item) => item.category === "pizza");
   const offered = menu.filter((item) => item.category === "offered");
   const drinks = menu.filter((item) => item.category === "drinks");
-  return [
+  const PopluerMenu = menu.filter((item) => item.category === "popular");
+
+  return {
     menu,
     PopluerMenu,
     dessert,
@@ -27,8 +29,9 @@ const useMenu = () => {
     pizza,
     offered,
     drinks,
+
     loding,
-  ];
+  };
 };
 
 export default useMenu;

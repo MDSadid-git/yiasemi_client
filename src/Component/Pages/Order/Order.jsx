@@ -12,8 +12,10 @@ const Order = () => {
   const categorys = ["dessert", "soup", "salad", "pizza", "drinks"];
   const { category } = useParams();
   const initialIndex = categorys.indexOf(category);
-  const [dessert, soup, salad, pizza, drinks] = useMenu();
+  const { dessert, soup, salad, pizza, drinks } = useMenu();
   const [tabsIndex, setTabsIndex] = useState(initialIndex);
+  console.log(salad);
+
   return (
     <div>
       <Helmet>

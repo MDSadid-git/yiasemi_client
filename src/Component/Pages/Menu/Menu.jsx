@@ -11,7 +11,7 @@ import saladImage from "../../Assets/menu/salad-bg.jpg";
 import soupImage from "../../Assets/menu/soup-bg.jpg";
 
 const Menu = () => {
-  const [dessert, soup, salad, pizza, offered] = useMenu();
+  const { dessert, soup, salad, pizza, offered } = useMenu();
 
   return (
     <div>
