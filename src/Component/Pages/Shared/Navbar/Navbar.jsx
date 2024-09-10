@@ -110,6 +110,18 @@ const Navbar = () => {
         </Link>
       </li>{" "}
       {/* Yiasem login end */}
+      {/* Yiasem Register  */}
+      <li className="font-bold nav-item  text-[14px] text-black  hover:text-brand duration-300">
+        <Link
+          onClick={isMenuOpen}
+          title="Register"
+          to="/register"
+          className="flex group items-center py-[14px] text-brand2 hover:translate-x-1 duration-300 uppercase  text-[14px]"
+        >
+          Register
+        </Link>
+      </li>{" "}
+      {/* Yiasem Register end */}
     </>
   );
 
