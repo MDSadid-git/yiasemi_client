@@ -1,3 +1,6 @@
+import { Helmet } from "react-helmet-async";
+import { useForm } from "react-hook-form";
+
 const Loing = () => {
   const handelLogin = (event) => {
     event.preventDefault();
@@ -6,9 +9,21 @@ const Loing = () => {
     const password = form.password.value;
     console.log(email, password);
   };
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+  const onSubmit = (data) => {
+    console.log(data);
+  };
   return (
     <div>
-      {" "}
+      <Helmet>
+        {" "}
+        <title>Yiasemi Lounge \ Login</title>
+      </Helmet>{" "}
       <>
         <div className="flex justify-center items-center overflow-x-hidden overflow-y-auto inset-0 z-50 outline-none focus:outline-none">
           <div className=" w-full my-6 mx-auto max-w-xl ">
@@ -20,7 +35,7 @@ const Loing = () => {
               </div>
               <div className=" p-6 flex-auto">
                 <form
-                  onSubmit={handelLogin}
+                  onSubmit={handleSubmit(onSubmit)}
                   className="bg-gray-200 shadow-md rounded px-8 pt-6 pb-8 w-full"
                 >
                   <label className="block text-secondary text-sm font-bold mb-1 mt-3">
@@ -28,6 +43,7 @@ const Loing = () => {
                   </label>
                   <input
                     placeholder="Email"
+                    {...register("email")}
                     type="email"
                     className="w-full h-12 px-4 mb-2 transition duration-200 bg-transparent border border-brand inset-0 bg-opacity-100 bg-gradient-to-r from-secondary text-brand rounded   appearance-none  focus:outline-none focus:shadow-outline"
                     name="email"
@@ -37,13 +53,14 @@ const Loing = () => {
                   </label>
                   <input
                     placeholder="Password"
+                    {...register("password")}
                     type="password"
                     className="w-full h-12 px-4 mb-2 transition duration-200 bg-transparent border border-brand inset-0 bg-opacity-100 bg-gradient-to-r from-secondary text-brand rounded   appearance-none  focus:outline-none focus:shadow-outline"
                     name="password"
                   />
 
                   <input
-                    class="inline-flex my-5 items-center justify-center p-4 px-6 py-1 overflow-hidden font-medium  transition duration-300 ease-out border-2 border-brand rounded-full shadow-md group"
+                    class="inline-flex cursor-pointer my-5 items-center justify-center p-4 px-6 py-1 overflow-hidden font-medium  transition duration-300 ease-out border-2 border-brand rounded-full shadow-md group"
                     type="submit"
                     value="Login"
                   />
