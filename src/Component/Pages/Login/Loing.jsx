@@ -2,13 +2,6 @@ import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 
 const Loing = () => {
-  const handelLogin = (event) => {
-    event.preventDefault();
-    const form = event.target;
-    const email = form.email.value;
-    const password = form.password.value;
-    console.log(email, password);
-  };
   const {
     register,
     handleSubmit,
@@ -16,7 +9,28 @@ const Loing = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    console.log(data);
+    fetch("http://localhost:8000/user/" + username)
+      .then((res) => {
+        return res.json();
+      })
+      .then((resp) => {
+        //console.log(resp)
+        if (Object.keys(resp).length === 0) {
+          toast.error("Please Enter valid username");
+        } else {
+          if (resp.password === password) {
+            toast.success("Success");
+            sessionStorage.setItem("username", username);
+            sessionStorage.setItem("userrole", resp.role);
+            usenavigate("/");
+          } else {
+            toast.error("Please Enter valid credentials");
+          }
+        }
+      })
+      .catch((err) => {
+        toast.error("Login Failed due to :" + err.message);
+      });
   };
   return (
     <div>
