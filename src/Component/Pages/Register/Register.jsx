@@ -26,19 +26,19 @@ const Register = () => {
       method: "POST",
       body: formData,
     })
-      .then((res) => {
-        if (res.status == 201) {
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+
+        if (data.status == 201) {
           toast.success("Registered successfully.");
           navigate("/");
         } else {
-          console.log(res);
-
-          toast.error("Failed : name");
+          toast.error("Failed : Register");
         }
       })
       .catch((err) => {
         toast.error("Failed :" + err.message);
-        console.log(err);
       });
   };
   return (

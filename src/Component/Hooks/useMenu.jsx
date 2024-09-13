@@ -19,7 +19,6 @@ const useMenu = () => {
   const offered = menu?.filter((item) => item.category === "offered");
   const drinks = menu?.filter((item) => item.category === "drinks");
   const PopluerMenu = menu?.filter((item) => item.category === "popular");
-  console.log(menu);
 
   return {
     menu,
@@ -30,7 +29,6 @@ const useMenu = () => {
     pizza,
     offered,
     drinks,
-
     loding,
   };
 };
