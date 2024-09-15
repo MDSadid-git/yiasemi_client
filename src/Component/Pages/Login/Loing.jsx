@@ -26,6 +26,19 @@ const Login = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+
+        // if (res.status === 200) {
+        //   return res.json(); // Parse the JSON response
+        // } else {
+        //   throw new Error("Login failed");
+        // }
+
+        // If login is successful, set token or handle user data here
+        // Assuming backend responds with a token
+        document.cookie = `token=${res.token}; path=/; max-age=86400;`; // Set token as cookie for 1 day
+
+        toast.success("Login successful!");
+        navigate("/login"); // Redirect to a protected page, like a dashboard
       })
       .catch((err) => {
         toast.error("Login Failed: " + err.message);

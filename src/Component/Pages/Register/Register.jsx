@@ -2,9 +2,13 @@ import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { registerUser } from "../../../features/user/UserSlice";
 
 const Register = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const {
     register,
     handleSubmit,
@@ -19,28 +23,38 @@ const Register = () => {
     formData.append("userName", data.userName);
     formData.append("email", data.email);
     formData.append("password", data.password);
-    formData.append("avatar", data.avatar[0]); // File needs to be sent as a Blob (data.avatar is a FileList, so we use [0])
-    console.log(formData);
+    formData.append("avatar", data.avatar[0]); // File needs to be sent as a Blob
 
     fetch("http://localhost:8000/api/v1/users/register", {
       method: "POST",
       body: formData,
     })
       .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
+      .then((responseData) => {
+        if (responseData.statusCode === 200) {
+          const { _id, userName, email, avatar } = responseData.data;
+          // Pass an object to registerUser as per the updated Redux slice
+          console.log(responseData);
 
-        if (data.status == 201) {
+          dispatch(
+            registerUser({
+              _id: _id,
+              userName,
+              email,
+              avatar,
+            })
+          );
           toast.success("Registered successfully.");
           navigate("/");
         } else {
-          toast.error("Failed : Register");
+          toast.error(`Failed : ${responseData.data}`);
         }
       })
       .catch((err) => {
-        toast.error("Failed :" + err.message);
+        toast.error("Failed: " + err.message);
       });
   };
+
   return (
     <div>
       <Helmet>
