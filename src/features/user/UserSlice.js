@@ -1,4 +1,4 @@
-import { createSlice, nanoid } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   user: { _id: "", userName: "", email: "", avatar: "" },
@@ -10,7 +10,6 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     registerUser: (state, action) => {
-      // Register a new user with the provided details
       state.user = {
         _id: action.payload._id,
         userName: action.payload.userName,
@@ -20,11 +19,12 @@ export const userSlice = createSlice({
       state.isAuthenticated = true; // Mark as logged in
     },
     loginUser: (state, action) => {
-      // Simulate a login with email and password (normally verified by backend)
-      const { email, userName } = action.payload;
-      // Update state based on existing user data
-      state.user.email = email;
-      state.user.userName = userName;
+      state.user = {
+        _id: action.payload._id,
+        userName: action.payload.userName,
+        email: action.payload.email,
+        avatar: action.payload.avatar || "", // Avatar is optional
+      };
       state.isAuthenticated = true; // Mark as logged in
     },
     logout: (state) => {

@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { registerUser } from "../../../features/user/UserSlice";
@@ -133,6 +133,11 @@ const Register = () => {
                     type="submit"
                     value="Register"
                   />
+                  <div className="text-brand font-semibold">
+                    <Link className="hover:underline" to={"/login"}>
+                      Already registered? Go to log in
+                    </Link>
+                  </div>
                 </form>
               </div>
             </div>

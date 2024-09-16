@@ -1,10 +1,13 @@
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { loginUser } from "../../../features/user/UserSlice";
+import { useDispatch } from "react-redux";
 
 const Login = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -12,7 +15,6 @@ const Login = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    // Send a POST request to the backend login endpoint with email and password
     fetch("http://localhost:8000/api/v1/users/login", {
       method: "POST",
       headers: {
@@ -24,21 +26,32 @@ const Login = () => {
       }),
     })
       .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
+      .then((responseData) => {
+        if (responseData.statusCode === 200) {
+          const { _id, userName, email, avatar, accessToken, refreshToken } =
+            responseData.data.user;
 
-        // if (res.status === 200) {
-        //   return res.json(); // Parse the JSON response
-        // } else {
-        //   throw new Error("Login failed");
-        // }
+          dispatch(
+            loginUser({
+              _id: _id,
+              userName: userName,
+              email: email,
+              avatar: avatar || "", // Ensure avatar has a fallback
+            })
+          );
 
-        // If login is successful, set token or handle user data here
-        // Assuming backend responds with a token
-        document.cookie = `token=${res.token}; path=/; max-age=86400;`; // Set token as cookie for 1 day
+          toast.success("Login successfully.");
 
-        toast.success("Login successful!");
-        navigate("/login"); // Redirect to a protected page, like a dashboard
+          // Set token as cookie
+          if (accessToken && refreshToken) {
+            document.cookie = `token=${accessToken}; path=/; max-age=86400;`; // Set token as cookie for 1 day
+            document.cookie = `refreshToken=${refreshToken}; path=/;`;
+          }
+
+          navigate("/");
+        } else {
+          toast.error(`Failed : ${responseData.message}`);
+        }
       })
       .catch((err) => {
         toast.error("Login Failed: " + err.message);
@@ -100,6 +113,11 @@ const Login = () => {
                   type="submit"
                   value="Login"
                 />
+                <div className="text-brand font-semibold">
+                  <Link className="hover:underline" to={"/register"}>
+                    New here? Create a New Account
+                  </Link>
+                </div>
               </form>
             </div>
           </div>
