@@ -6,6 +6,8 @@ import Menu from "../Pages/Menu/Menu.jsx";
 import Order from "../Pages/Order/Order.jsx";
 import Loing from "../Pages/Login/Loing.jsx";
 import Register from "../Pages/Register/Register.jsx";
+import PrivateRoute from "./PrivetRouter/PrivateRoute.jsx";
+import GetUser from "../Pages/Shared/GetUser/GetUser.jsx";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -30,6 +32,14 @@ export const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register />,
+      },
+      {
+        path: "/new",
+        element: (
+          <PrivateRoute>
+            <GetUser></GetUser>
+          </PrivateRoute>
+        ),
       },
     ],
   },

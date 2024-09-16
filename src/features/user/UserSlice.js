@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   user: { _id: "", userName: "", email: "", avatar: "" },
-  isAuthenticated: false, // New field to track login status
 };
 
 export const userSlice = createSlice({
@@ -16,7 +15,6 @@ export const userSlice = createSlice({
         email: action.payload.email,
         avatar: action.payload.avatar || "", // Avatar is optional
       };
-      state.isAuthenticated = true; // Mark as logged in
     },
     loginUser: (state, action) => {
       state.user = {
@@ -25,12 +23,10 @@ export const userSlice = createSlice({
         email: action.payload.email,
         avatar: action.payload.avatar || "", // Avatar is optional
       };
-      state.isAuthenticated = true; // Mark as logged in
     },
     logout: (state) => {
       // Reset the user and authentication state on logout
       state.user = { _id: "", userName: "", email: "", avatar: "" };
-      state.isAuthenticated = false;
     },
   },
 });

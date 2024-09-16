@@ -1,12 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 
 const GetUser = () => {
-  const { user, setUser } = useState({});
-
-  return {
-    user,
-    setUser,
-  };
+  return <div>new</div>;
 };
 
 export default GetUser;

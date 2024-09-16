@@ -35,6 +35,15 @@ const Register = () => {
           const { _id, userName, email, avatar } = responseData.data;
           // Pass an object to registerUser as per the updated Redux slice
           console.log(responseData);
+          localStorage.setItem(
+            "user",
+            JSON.stringify({
+              _id,
+              userName,
+              email,
+              avatar: avatar || "", // Ensure avatar has a fallback
+            })
+          );
 
           dispatch(
             registerUser({
@@ -129,7 +138,7 @@ const Register = () => {
                   )}
 
                   <input
-                    class=" cursor-pointer block my-5 items-center justify-center p-4 px-6 py-1 overflow-hidden font-medium  transition duration-300 ease-out border-2 border-brand rounded-full shadow-md group"
+                    className=" cursor-pointer block my-5 items-center justify-center p-4 px-6 py-1 overflow-hidden font-medium  transition duration-300 ease-out border-2 border-brand rounded-full shadow-md group"
                     type="submit"
                     value="Register"
                   />

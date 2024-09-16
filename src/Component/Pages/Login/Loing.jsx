@@ -28,8 +28,17 @@ const Login = () => {
       .then((res) => res.json())
       .then((responseData) => {
         if (responseData.statusCode === 200) {
-          const { _id, userName, email, avatar, accessToken, refreshToken } =
-            responseData.data.user;
+          const { _id, userName, email, avatar } = responseData.data.user;
+          const { accessToken, refreshToken } = responseData.data;
+          localStorage.setItem(
+            "user",
+            JSON.stringify({
+              _id,
+              userName,
+              email,
+              avatar: avatar || "", // Ensure avatar has a fallback
+            })
+          );
 
           dispatch(
             loginUser({
@@ -41,6 +50,7 @@ const Login = () => {
           );
 
           toast.success("Login successfully.");
+          console.log(responseData.data.user);
 
           // Set token as cookie
           if (accessToken && refreshToken) {
