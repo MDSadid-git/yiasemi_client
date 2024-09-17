@@ -50,7 +50,6 @@ const Login = () => {
           );
 
           toast.success("Login successfully.");
-          console.log(responseData.data.user);
 
           // Set token as cookie
           if (accessToken && refreshToken) {

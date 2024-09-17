@@ -5,16 +5,19 @@ import { useSelector } from "react-redux";
 
 const Navbar = () => {
   // yiasemi login & logout area start
-  const storeUser = useSelector((state) => state.user);
+  const localUser = localStorage.getItem("user");
+  const storedUser = useSelector((state) => state.user);
   const [user, setUser] = useState(null);
-
   useEffect(() => {
-    if (storeUser.email) {
-      setUser(storeUser);
+    if (localUser || storedUser) {
+      setUser(localUser);
+      if (storedUser.email.length) {
+        setUser(storedUser);
+      }
     } else {
       setUser(null);
     }
-  }, [storeUser]);
+  }, [localUser]);
 
   const handleLogout = () => {
     localStorage.removeItem("user");
