@@ -1,78 +1,35 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-// import colorLogo from "../../assets/logo/colorLogo.png";
-import Modal from "./Modal";
 import "./Navbar.css";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
+  // yiasemi login & logout area start
+  const storeUser = useSelector((state) => state.user);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    if (storeUser.email) {
+      setUser(storeUser);
+    } else {
+      setUser(null);
+    }
+  }, [storeUser]);
+
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    setUser(null);
+  };
+  // yiasemi login & logout area end
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [homeDropdownOpen, setHomeDropdownOpen] = useState(false);
-  const [pagesDropdownOpen, setPagesDropdownOpen] = useState(false);
-  const [clinicsDropdownOpen, setClinicsDropdownOpen] = useState(false);
-  const [blogDropdownOpen, setBlogDropdownOpen] = useState(false);
-  const [doctorsDropdownOpen, setDoctorsDropdownOpen] = useState(false);
-
-  // for home
-  const toggleHomeDropdown = () => setHomeDropdownOpen(!homeDropdownOpen);
-  const homeDropdownClose = () => setHomeDropdownOpen(false);
-
-  //for pages
-  const togglePagesDropdown = () => setPagesDropdownOpen(!pagesDropdownOpen);
-  const pagesDropdownClose = () => setPagesDropdownOpen(false);
-
-  //for clinics
-  const toggleClinicsDropdown = () =>
-    setClinicsDropdownOpen(!clinicsDropdownOpen);
-  const clinicsDropdownClose = () => setClinicsDropdownOpen(false);
-
-  //for blog
-  const toggleBlogDropdown = () => setBlogDropdownOpen(!blogDropdownOpen);
-  const blogDropdownClose = () => setBlogDropdownOpen(false);
-
-  //for doctors
-  const toggleDoctorDropdown = () =>
-    setDoctorsDropdownOpen(!doctorsDropdownOpen);
-  const doctorsDropdownClose = () => setDoctorsDropdownOpen(false);
 
   const menuItems = (
     <>
-      <li
-        className="font-bold nav-item  text-[14px] text-black  hover:text-brand duration-400"
-        onMouseEnter={toggleHomeDropdown}
-        onMouseLeave={homeDropdownClose}
-        onClick={toggleHomeDropdown}
-      >
-        <Link
-          onClick={homeDropdownClose}
-          className="flex group items-center py-[14px] text-brand2 hover:translate-x-1 duration-300 uppercase  text-[14px] "
-        >
+      <li className="font-bold nav-item  text-[14px] text-black  hover:text-brand duration-400">
+        <Link className="flex group items-center py-[14px] text-brand2 hover:translate-x-1 duration-300 uppercase  text-[14px] ">
           <span>Home</span>
         </Link>
-        {/* 
-        {homeDropdownOpen && (
-          <ul className="dropdown-menu  rounded-b-lg w-32 pt-1 absolute top-auto bg-white block z-50 duration-300 group-hover:translate-y-1 ease-in-out ">
-            <li className="py-1/2 mb-[1px] hover:bg-secondary duration-300 bg-brand py-2 text-secondary hover:text-brand">
-              <Link
-                onClick={isMenuOpen}
-                title="Home1"
-                to="/"
-                className="block px-4 text-brand2 text-[14px] hover:translate-x-1 duration-300"
-              >
-                Home1
-              </Link>
-            </li>
-            <li className="bg-brand hover:bg-secondary duration-300 py-2 text-white">
-              <Link
-                onClick={isMenuOpen}
-                title="Home2"
-                to="/home2"
-                className="block px-4    text-[14px] text-gray-700 hover:text-brand hover:translate-x-1 duration-300"
-              >
-                Home2
-              </Link>
-            </li>
-          </ul>
-        )} */}
       </li>
       {/* Yiasem All Menu  */}
       <li className="font-bold nav-item  text-[14px] text-black  hover:text-brand duration-300">
@@ -98,30 +55,43 @@ const Navbar = () => {
         </Link>
       </li>{" "}
       {/* Yiasem all menu end */}
-      {/* Yiasem login  */}
-      <li className="font-bold nav-item  text-[14px] text-black  hover:text-brand duration-300">
-        <Link
-          onClick={isMenuOpen}
-          title="Login"
-          to="/login"
-          className="flex group items-center py-[14px] text-brand2 hover:translate-x-1 duration-300 uppercase  text-[14px]"
+      {/* Yiasem user login and register area start */}
+      {user ? (
+        <button
+          onClick={handleLogout}
+          className=" cursor-pointer block my-1 items-center justify-center  px-6 py-[2px] overflow-hidden font-medium  transition duration-300 ease-out border-2 border-brand rounded-full shadow-md group"
         >
-          Login
-        </Link>
-      </li>{" "}
-      {/* Yiasem login end */}
-      {/* Yiasem Register  */}
-      <li className="font-bold nav-item  text-[14px] text-black  hover:text-brand duration-300">
-        <Link
-          onClick={isMenuOpen}
-          title="Register"
-          to="/register"
-          className="flex group items-center py-[14px] text-brand2 hover:translate-x-1 duration-300 uppercase  text-[14px]"
-        >
-          Register
-        </Link>
-      </li>{" "}
-      {/* Yiasem Register end */}
+          Logout
+        </button>
+      ) : (
+        <div className="flex justify-between gap-1">
+          {/* Yiasem login  */}
+
+          <li className="cursor-pointer block my-1 items-center justify-center  px-6 py-[2px] overflow-hidden font-medium  transition duration-300 ease-out border-2 border-brand rounded-full shadow-md group">
+            <Link
+              title="Login"
+              to="/login"
+              className="flex group items-center text-black duration-300 uppercase  text-[14px]"
+            >
+              Login
+            </Link>
+          </li>
+          {/* Yiasem login end */}
+          {/* Yiasem Register  */}
+          <li className="cursor-pointer block my-1 items-center justify-center  px-6 py-[2px] overflow-hidden font-medium  transition duration-300 ease-out border-2 border-brand2 rounded-full shadow-md group">
+            <Link
+              onClick={isMenuOpen}
+              title="Register"
+              to="/register"
+              className="flex group items-center  text-black duration-300 uppercase  text-[14px]"
+            >
+              Register
+            </Link>
+          </li>
+          {/* Yiasem Register end */}
+        </div>
+      )}
+      {/* Yiasem user login and register area start */}
     </>
   );
 
