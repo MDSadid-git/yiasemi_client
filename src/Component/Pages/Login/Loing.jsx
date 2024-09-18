@@ -61,11 +61,11 @@ const Login = () => {
 
           navigate(from, { replace: true });
         } else {
-          toast.error(`Failed : ${responseData.message}`);
+          toast.error(`Failed : ${responseData.data}`);
         }
       })
       .catch((err) => {
-        toast.error("Login Failed: " + err.message);
+        toast.error("Login Failed: " + err.data);
       });
   };
 

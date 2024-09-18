@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 import { useSelector } from "react-redux";
+import { FaShoppingCart } from "react-icons/fa";
 
 const Navbar = () => {
   // yiasemi login & logout area start
@@ -11,9 +12,10 @@ const Navbar = () => {
   useEffect(() => {
     if (localUser || storedUser) {
       setUser(localUser);
-      if (storedUser.email.length) {
-        setUser(storedUser);
-      }
+      // if (storedUser.email.length) {
+
+      //   setUser(storedUser);
+      // }
     } else {
       setUser(null);
     }
@@ -60,11 +62,12 @@ const Navbar = () => {
       <li className="font-bold nav-item  text-[14px] text-black  hover:text-brand duration-300">
         <Link
           onClick={isMenuOpen}
-          title="Order"
-          to="/new"
+          title="Cart"
+          to="/cart"
           className="flex group items-center py-[14px] text-brand2 hover:translate-x-1 duration-300 uppercase  text-[14px]"
         >
-          New
+          <FaShoppingCart size={18} />
+          <span className="text-brand mb-3">0</span>
         </Link>
       </li>{" "}
       {/* Yiasem all menu end */}

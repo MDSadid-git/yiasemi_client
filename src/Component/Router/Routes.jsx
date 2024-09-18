@@ -34,7 +34,7 @@ export const router = createBrowserRouter([
         element: <Register />,
       },
       {
-        path: "/new",
+        path: "/cart",
         element: (
           <PrivateRoute>
             <GetUser></GetUser>
