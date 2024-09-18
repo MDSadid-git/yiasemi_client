@@ -57,6 +57,16 @@ const Navbar = () => {
           Order
         </Link>
       </li>{" "}
+      <li className="font-bold nav-item  text-[14px] text-black  hover:text-brand duration-300">
+        <Link
+          onClick={isMenuOpen}
+          title="Order"
+          to="/new"
+          className="flex group items-center py-[14px] text-brand2 hover:translate-x-1 duration-300 uppercase  text-[14px]"
+        >
+          New
+        </Link>
+      </li>{" "}
       {/* Yiasem all menu end */}
       {/* Yiasem user login and register area start */}
       {user ? (

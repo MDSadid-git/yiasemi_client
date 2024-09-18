@@ -1,13 +1,15 @@
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { registerUser } from "../../../features/user/UserSlice";
 
 const Register = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const dispatch = useDispatch();
+  const from = location.state?.from?.pathname || "/";
 
   const {
     register,
@@ -54,7 +56,7 @@ const Register = () => {
             })
           );
           toast.success("Registered successfully.");
-          navigate("/");
+          navigate(from, { replace: true });
         } else {
           toast.error(`Failed : ${responseData.data}`);
         }
