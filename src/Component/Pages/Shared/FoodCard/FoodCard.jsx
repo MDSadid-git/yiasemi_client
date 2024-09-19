@@ -1,19 +1,32 @@
 import React from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { json, Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import useAxiosHooks from "../../../Hooks/useAxiosHooks";
 
 const FoodCard = ({ items }) => {
-  const localUser = localStorage.getItem("user");
+  const user = JSON.parse(localStorage.getItem("user"));
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname || "/login";
+  const axiosSecure = useAxiosHooks();
+
   const handelOrderItems = (food) => {
-    if (localUser) {
-      console.log(food);
-      toast.success("Food add done successfully");
+    if (user && user.email) {
+      const cartItem = {
+        menuId: food?._id,
+        email: user?.email,
+        name: food?.name,
+        image: food?.image,
+        price: food?.price,
+      };
+      axiosSecure.post("/addcart", cartItem).then((res) => {
+        console.log(res.data.statusCode);
+        if (res.data.statusCode === 200) {
+          toast.success(`${res.data.data.name} Food add done successfully`);
+        }
+      });
     } else {
       toast.error(`You are not login!!!`);
-      navigate(from, { replace: true });
+      navigate("/login", { state: { from: location } });
     }
   };
   return (
