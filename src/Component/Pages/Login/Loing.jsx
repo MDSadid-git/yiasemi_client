@@ -55,7 +55,7 @@ const Login = () => {
 
           // Set token as cookie
           if (accessToken && refreshToken) {
-            document.cookie = `token=${accessToken}; path=/; max-age=86400;`; // Set token as cookie for 1 day
+            document.cookie = `accessToken=${accessToken}; path=/; max-age=86400;`; // Set token as cookie for 1 day
             document.cookie = `refreshToken=${refreshToken}; path=/;`;
           }
 

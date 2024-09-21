@@ -2,12 +2,14 @@ import React from "react";
 import { json, Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import useAxiosHooks from "../../../Hooks/useAxiosHooks";
+import useCartHook from "../../../Hooks/useCartHook";
 
 const FoodCard = ({ items }) => {
   const user = JSON.parse(localStorage.getItem("user"));
   const navigate = useNavigate();
   const location = useLocation();
   const axiosSecure = useAxiosHooks();
+  const [, refetch] = useCartHook();
 
   const handelOrderItems = (food) => {
     if (user && user.email) {
@@ -22,6 +24,7 @@ const FoodCard = ({ items }) => {
         console.log(res.data.statusCode);
         if (res.data.statusCode === 200) {
           toast.success(`${res.data.data.name} Food add done successfully`);
+          refetch();
         }
       });
     } else {

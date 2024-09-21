@@ -3,12 +3,16 @@ import { Link } from "react-router-dom";
 import "./Navbar.css";
 import { useSelector } from "react-redux";
 import { FaShoppingCart } from "react-icons/fa";
+import useCartHook from "../../../Hooks/useCartHook";
 
 const Navbar = () => {
   // yiasemi login & logout area start
   const localUser = localStorage.getItem("user");
   const storedUser = useSelector((state) => state.user);
   const [user, setUser] = useState(null);
+  const [cart] = useCartHook();
+  const cartLenght = cart?.data?.map((item) => item?.userFoods?.length);
+
   useEffect(() => {
     if (localUser || storedUser) {
       setUser(localUser);
@@ -67,7 +71,7 @@ const Navbar = () => {
           className="flex group items-center py-[14px] text-brand2 hover:translate-x-1 duration-300 uppercase  text-[14px]"
         >
           <FaShoppingCart size={18} />
-          <span className="text-brand mb-3">0</span>
+          <span className="text-brand mb-3">{cartLenght}</span>
         </Link>
       </li>{" "}
       {/* Yiasem all menu end */}
