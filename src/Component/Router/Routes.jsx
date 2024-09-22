@@ -8,6 +8,8 @@ import Loing from "../Pages/Login/Loing.jsx";
 import Register from "../Pages/Register/Register.jsx";
 import PrivateRoute from "./PrivetRouter/PrivateRoute.jsx";
 import GetUser from "../Pages/Shared/GetUser/GetUser.jsx";
+import Dashboard from "../Layout/Dashboard.jsx";
+import Cart from "../Pages/DashBoard/Cart.jsx/Cart.jsx";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -40,6 +42,16 @@ export const router = createBrowserRouter([
             <GetUser></GetUser>
           </PrivateRoute>
         ),
+      },
+    ],
+  },
+  {
+    path: "dashboard",
+    element: <Dashboard />,
+    children: [
+      {
+        path: "cart",
+        element: <Cart />,
       },
     ],
   },

@@ -67,11 +67,11 @@ const Navbar = () => {
         <Link
           onClick={isMenuOpen}
           title="Cart"
-          to="/cart"
+          to="/dashboard/cart"
           className="flex group items-center py-[14px] text-brand2 hover:translate-x-1 duration-300 uppercase  text-[14px]"
         >
           <FaShoppingCart size={18} />
-          <span className="text-brand mb-3">{cartLenght}</span>
+          <span className="text-brand mb-3">{user ? cartLenght : 0}</span>
         </Link>
       </li>{" "}
       {/* Yiasem all menu end */}
