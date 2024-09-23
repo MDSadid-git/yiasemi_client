@@ -3,14 +3,33 @@ import { Helmet } from "react-helmet-async";
 import useCartHook from "../../../Hooks/useCartHook";
 import SectionButton from "../../../ComponentShered/SectionButton/SectionButton";
 import { FaTrashAlt } from "react-icons/fa";
+import useAxiosHooks from "../../../Hooks/useAxiosSecure";
+import { toast } from "react-toastify";
 
 const Cart = () => {
-  const [cart] = useCartHook();
+  const [cart, refetch] = useCartHook();
   const cartLenght = cart?.data?.map((item) => item?.userFoods?.length);
   const cartPrice = cart?.data?.[0]?.userFoods?.reduce(
     (total, item) => total + item.price,
     0
   );
+
+  const axiosURL = useAxiosHooks();
+
+  const deleteItem = (id) => {
+    axiosURL
+      .delete(`/cart/${id}`)
+      .then((res) => {
+        console.log(res);
+        if (res.data.statusCode === 200) {
+          toast.success("Delete Item SuccessFully");
+        }
+        refetch();
+      })
+      .catch((err) => {
+        toast.error("Delete Faild", err);
+      });
+  };
 
   return (
     <div>
@@ -24,7 +43,7 @@ const Cart = () => {
         </h2>
         <h2 className="font-semibold text-2xl my-2">Total Price {cartPrice}</h2>
         <div className="my-2">
-          <SectionButton sectionTitle="Pay" bgColor="bg-brand2" />
+          <SectionButton sectionTitle="Pay" />
         </div>
       </div>
       {/* table cart area  */}
@@ -88,6 +107,7 @@ const Cart = () => {
                         </td>
                         <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                           <button
+                            onClick={() => deleteItem(item._id)}
                             type="button"
                             className=" text-red-500 hover:text-red-700"
                           >

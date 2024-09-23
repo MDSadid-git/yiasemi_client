@@ -1,7 +1,7 @@
 import React from "react";
 import { json, Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import useAxiosHooks from "../../../Hooks/useAxiosHooks";
+import useAxiosHooks from "../../../Hooks/useAxiosSecure";
 import useCartHook from "../../../Hooks/useCartHook";
 
 const FoodCard = ({ items }) => {

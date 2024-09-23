@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosHooks from "./useAxiosHooks";
+import useAxiosHooks from "./useAxiosSecure";
 
 const useCartHook = () => {
   const user = JSON.parse(localStorage.getItem("user"));
