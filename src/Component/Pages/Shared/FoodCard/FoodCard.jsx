@@ -20,7 +20,7 @@ const FoodCard = ({ items }) => {
         image: food?.image,
         price: food?.price,
       };
-      axiosSecure.post("/addcart", cartItem).then((res) => {
+      axiosSecure.post("/cart/addcart", cartItem).then((res) => {
         console.log(res.data.statusCode);
         if (res.data.statusCode === 200) {
           toast.success(`${res.data.data.name} Food add done successfully`);

@@ -8,7 +8,7 @@ const useCartHook = () => {
     queryKey: ["cart"],
     queryFn: async () => {
       const res = await axiosSecure.get(
-        `/user-orders-foods?email=${user.email}`
+        `/cart/user-orders-foods?email=${user.email}`
       );
       return res.data;
     },

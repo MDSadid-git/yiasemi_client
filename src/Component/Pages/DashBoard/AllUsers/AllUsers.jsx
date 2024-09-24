@@ -1,29 +1,25 @@
 import React from "react";
-import { Helmet } from "react-helmet-async";
-import useCartHook from "../../../Hooks/useCartHook";
-import SectionButton from "../../../ComponentShered/SectionButton/SectionButton";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
 import { FaTrashAlt } from "react-icons/fa";
 
-import { toast } from "react-toastify";
-import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+const AllUsers = () => {
+  const axiosSecure = useAxiosSecure();
+  const { data: users = [] } = useQuery({
+    queryKey: ["users"],
+    queryFn: async () => {
+      const res = await axiosSecure.get("/users/users");
+      return res.data;
+    },
+  });
 
-const Cart = () => {
-  const [cart, refetch] = useCartHook();
-  const cartLenght = cart?.data?.map((item) => item?.userFoods?.length);
-  const cartPrice = cart?.data?.[0]?.userFoods?.reduce(
-    (total, item) => total + item.price,
-    0
-  );
-
-  const axiosURL = useAxiosSecure();
-
-  const deleteItem = (id) => {
+  const deleteUser = (id) => {
     axiosURL
-      .delete(`/cart/cart/${id}`)
+      .delete(`/users/users/${id}`)
       .then((res) => {
         console.log(res);
         if (res.data.statusCode === 200) {
-          toast.success("Delete Item SuccessFully");
+          toast.success("Delete User SuccessFully");
         }
         refetch();
       })
@@ -34,18 +30,9 @@ const Cart = () => {
 
   return (
     <div>
-      <Helmet>
-        {" "}
-        <title>Yiasemi Lounge \ Order Cart </title>
-      </Helmet>
-      <div className="md:flex justify-evenly px-4">
-        <h2 className="font-semibold text-2xl my-2">
-          Total Items: {cartLenght}
-        </h2>
-        <h2 className="font-semibold text-2xl my-2">Total Price {cartPrice}</h2>
-        <div className="my-2">
-          <SectionButton sectionTitle="Pay" />
-        </div>
+      <div>
+        <h2>All Users</h2>
+        <h2>User Length {users?.data?.length}</h2>
       </div>
       {/* table cart area  */}
       <div>
@@ -59,9 +46,7 @@ const Cart = () => {
                 <table className="min-w-full leading-normal">
                   <thead>
                     <tr>
-                      <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                        #
-                      </th>
+                      <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider"></th>
                       <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
                         Image
                       </th>
@@ -69,7 +54,10 @@ const Cart = () => {
                         Name
                       </th>
                       <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                        Price
+                        Email
+                      </th>
+                      <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                        Roll
                       </th>
                       <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
                         Action
@@ -77,8 +65,8 @@ const Cart = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {cart?.data?.[0]?.userFoods?.map((item, index = 1) => (
-                      <tr key={item._id}>
+                    {users?.data?.map((user, index = 1) => (
+                      <tr key={user._id}>
                         <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                           <p className="text-gray-900 whitespace-no-wrap">
                             {index + 1}
@@ -89,7 +77,7 @@ const Cart = () => {
                             <div className="flex-shrink-0 w-10 h-10">
                               <img
                                 className="w-full h-full rounded-full"
-                                src={item.image}
+                                src={user?.avatar}
                                 alt=""
                               />
                             </div>
@@ -98,17 +86,26 @@ const Cart = () => {
 
                         <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                           <p className="text-gray-900 whitespace-no-wrap">
-                            {item.name}
+                            {user?.userName}
                           </p>
                         </td>
                         <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                           <p className="text-gray-900 whitespace-no-wrap">
-                            ${item.price}
+                            {user?.email}
                           </p>
                         </td>
                         <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                           <button
-                            onClick={() => deleteItem(item._id)}
+                            onClick={() => deleteuser(user?._id)}
+                            type="button"
+                            className=" text-red-500 hover:text-red-700"
+                          >
+                            <FaTrashAlt size={17} />
+                          </button>
+                        </td>
+                        <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                          <button
+                            onClick={() => deleteUser(user?._id)}
                             type="button"
                             className=" text-red-500 hover:text-red-700"
                           >
@@ -137,4 +134,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default AllUsers;

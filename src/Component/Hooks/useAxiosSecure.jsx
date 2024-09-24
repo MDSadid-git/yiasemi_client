@@ -1,9 +1,9 @@
 import axios from "axios";
 const axiosSecure = axios.create({
-  baseURL: "http://localhost:8000/api/v1/cart",
+  baseURL: "http://localhost:8000/api/v1",
 });
-const useAxiosHooks = () => {
+const useAxiosSecure = () => {
   return axiosSecure;
 };
 
-export default useAxiosHooks;
+export default useAxiosSecure;
