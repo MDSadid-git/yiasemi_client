@@ -1,11 +1,12 @@
 import React from "react";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
-import { FaTrashAlt } from "react-icons/fa";
+import { FaTrashAlt, FaUser } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 const AllUsers = () => {
   const axiosSecure = useAxiosSecure();
-  const { data: users = [] } = useQuery({
+  const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
       const res = await axiosSecure.get("/users/users");
@@ -14,17 +15,32 @@ const AllUsers = () => {
   });
 
   const deleteUser = (id) => {
-    axiosURL
+    axiosSecure
       .delete(`/users/users/${id}`)
       .then((res) => {
         console.log(res);
         if (res.data.statusCode === 200) {
           toast.success("Delete User SuccessFully");
+          refetch();
+        }
+      })
+      .catch((err) => {
+        toast.error("Delete Faild", err);
+      });
+  };
+  const adminUser = (id) => {
+    axiosSecure
+      .patch(`/users/admin/${id}`)
+      .then((res) => {
+        console.log(res);
+        if (res.data.statusCode === 200) {
+          refetch();
+          toast.success(`User Admin SuccessFully`);
         }
         refetch();
       })
       .catch((err) => {
-        toast.error("Delete Faild", err);
+        toast.error("User Admin Faild", err);
       });
   };
 
@@ -95,13 +111,17 @@ const AllUsers = () => {
                           </p>
                         </td>
                         <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                          <button
-                            onClick={() => deleteuser(user?._id)}
-                            type="button"
-                            className=" text-red-500 hover:text-red-700"
-                          >
-                            <FaTrashAlt size={17} />
-                          </button>
+                          {user.roll === "Admin" ? (
+                            "Admin"
+                          ) : (
+                            <button
+                              onClick={() => adminUser(user?._id)}
+                              type="button"
+                              className=" text-red-500 hover:text-red-700"
+                            >
+                              <FaUser size={17} />
+                            </button>
+                          )}
                         </td>
                         <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                           <button
