@@ -27,6 +27,8 @@ const Navbar = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("user");
+    localStorage.removeItem("refreshToken");
+    localStorage.removeItem("accessToken");
     setUser(null);
   };
   // yiasemi login & logout area end

@@ -30,7 +30,7 @@ const Login = () => {
       .then((res) => res.json())
       .then((responseData) => {
         if (responseData.statusCode === 200) {
-          const { _id, userName, email, avatar } = responseData.data.user;
+          const { _id, userName, email, avatar, roll } = responseData.data.user;
           const { accessToken, refreshToken } = responseData.data;
           localStorage.setItem(
             "user",
@@ -39,6 +39,7 @@ const Login = () => {
               userName,
               email,
               avatar: avatar || "", // Ensure avatar has a fallback
+              roll,
             })
           );
 
@@ -55,8 +56,10 @@ const Login = () => {
 
           // Set token as cookie
           if (accessToken && refreshToken) {
-            document.cookie = `accessToken=${accessToken}; path=/; max-age=86400;`; // Set token as cookie for 1 day
-            document.cookie = `refreshToken=${refreshToken}; path=/;`;
+            // document.cookie = `accessToken=${accessToken}; path=/; max-age=86400;`;
+            // document.cookie = `refreshToken=${refreshToken}; path=/;`;
+            localStorage.setItem(`accessToken`, accessToken);
+            localStorage.setItem(`refreshToken`, refreshToken);
           }
 
           navigate(from, { replace: true });
