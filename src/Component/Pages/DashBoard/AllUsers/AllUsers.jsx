@@ -3,9 +3,12 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { FaTrashAlt, FaUser } from "react-icons/fa";
 import { toast } from "react-toastify";
+import useAdmin from "../../../Hooks/useAdmin";
 
 const AllUsers = () => {
   const axiosSecure = useAxiosSecure();
+  const admin = useAdmin();
+
   const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {

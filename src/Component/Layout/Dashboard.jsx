@@ -11,9 +11,10 @@ import {
   FaUtensils,
 } from "react-icons/fa";
 import { FaListCheck } from "react-icons/fa6";
+import useAdmin from "../Hooks/useAdmin";
 
 const Dashboard = () => {
-  const isAdmin = true;
+  const [isAdmin] = useAdmin();
   return (
     <div>
       <Navbar></Navbar>

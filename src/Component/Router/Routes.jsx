@@ -11,6 +11,7 @@ import GetUser from "../Pages/Shared/GetUser/GetUser.jsx";
 import Dashboard from "../Layout/Dashboard.jsx";
 import Cart from "../Pages/DashBoard/Cart.jsx/Cart.jsx";
 import AllUsers from "../Pages/DashBoard/AllUsers/AllUsers.jsx";
+import AdminRoute from "./AdminRoute/AdminRoute.jsx";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -57,7 +58,11 @@ export const router = createBrowserRouter([
       // all admin route
       {
         path: "users",
-        element: <AllUsers />,
+        element: (
+          <AdminRoute>
+            <AllUsers />
+          </AdminRoute>
+        ),
       },
       {
         path: "cart",
