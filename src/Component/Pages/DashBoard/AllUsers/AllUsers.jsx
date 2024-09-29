@@ -7,7 +7,7 @@ import useAdmin from "../../../Hooks/useAdmin";
 
 const AllUsers = () => {
   const axiosSecure = useAxiosSecure();
-  const admin = useAdmin();
+  const isAdmin = useAdmin();
 
   const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],

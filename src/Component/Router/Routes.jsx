@@ -12,6 +12,10 @@ import Dashboard from "../Layout/Dashboard.jsx";
 import Cart from "../Pages/DashBoard/Cart.jsx/Cart.jsx";
 import AllUsers from "../Pages/DashBoard/AllUsers/AllUsers.jsx";
 import AdminRoute from "./AdminRoute/AdminRoute.jsx";
+import AdminHome from "../Pages/DashBoard/AdminHome/AdminHome.jsx";
+import AddItems from "../Pages/DashBoard/AddItems/AddItems.jsx";
+import ManageItems from "../Pages/DashBoard/ManageItems/ManageItems.jsx";
+import ManageBookins from "../Pages/DashBoard/ManageBookings/ManageBookins.jsx";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -64,6 +68,40 @@ export const router = createBrowserRouter([
           </AdminRoute>
         ),
       },
+      {
+        path: "adminHome",
+        element: (
+          <AdminRoute>
+            <AdminHome />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "addItems",
+        element: (
+          <AdminRoute>
+            <AddItems />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "manageItems",
+        element: (
+          <AdminRoute>
+            <ManageItems />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "bookings",
+        element: (
+          <AdminRoute>
+            <ManageBookins />
+          </AdminRoute>
+        ),
+      },
+      {},
+      // all users
       {
         path: "cart",
         element: <Cart />,
