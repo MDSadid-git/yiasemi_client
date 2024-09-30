@@ -3,13 +3,12 @@ import SectionTitle from "../../../ComponentShered/SectionTitile/SectionTitle";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { toast } from "react-toastify";
 
 const AddItems = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const dispatch = useDispatch();
-  const from = location.state?.from?.pathname || "/";
-
+  const axiosSecure = useAxiosSecure();
+  const user = JSON.parse(localStorage.getItem("user"));
   const {
     register,
     handleSubmit,
@@ -17,9 +16,34 @@ const AddItems = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    // Prepare FormData to send file and other data
-    const formData = new FormData();
-    console.log(data);
+    // console.log(data.image[0]);
+    const avatar = data.image[0];
+
+    const menuItem = {
+      user: user.email,
+      name: data.itemName,
+      category: data.category,
+      price: parseFloat(data.price),
+      recipe: data.recipe,
+      avatar,
+    };
+    console.log(menuItem);
+
+    axiosSecure
+      .post(`menus/admin/item`, menuItem, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        if (res.data.statusCode === 200) {
+          toast.success(`Add Item SuccessFully`);
+        }
+      })
+      .catch((err) => {
+        toast.error("Add Item Faild", err);
+      });
   };
   return (
     <div>
@@ -55,12 +79,12 @@ const AddItems = () => {
                   </label>
                   <input
                     placeholder="Price"
-                    {...register("Price", { required: true })}
+                    {...register("price", { required: true })}
                     type="Price"
                     className="w-full h-12 px-4 mb-2 transition duration-200 bg-transparent border border-brand inset-0 bg-opacity-100 bg-gradient-to-r from-secondary text-brand rounded   appearance-none  focus:outline-none focus:shadow-outline"
-                    name="Price"
+                    name="price"
                   />
-                  {errors.Price && (
+                  {errors.price && (
                     <span className="text-red-600">Price is required</span>
                   )}
                   <div className="">
@@ -77,17 +101,17 @@ const AddItems = () => {
                     <span className="text-red-600">Recipe is required</span>
                   )}
                   <label className="block text-secondary text-sm font-bold mt-3 mb-1">
-                    Avatar
+                    image
                   </label>
                   <input
-                    placeholder="avatar"
-                    {...register("avatar", { required: true })}
+                    placeholder="image"
+                    {...register("image", { required: true })}
                     type="file"
                     className="w-full pt-2 h-12 px-4 mb-2 transition duration-200 bg-transparent border border-brand inset-0 bg-opacity-100 bg-gradient-to-r from-secondary text-brand rounded   appearance-none  focus:outline-none focus:shadow-outline"
-                    name="avatar"
+                    name="image"
                   />
-                  {errors.avatar && (
-                    <span className="text-red-600">Avatar is required</span>
+                  {errors.image && (
+                    <span className="text-red-600">Image is required</span>
                   )}
                   <div className="form-control w-full my-2">
                     <label className="label">
