@@ -1,7 +1,5 @@
 import { Helmet } from "react-helmet-async";
 import SectionTitle from "../../../ComponentShered/SectionTitile/SectionTitle";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { toast } from "react-toastify";
@@ -12,39 +10,35 @@ const AddItems = () => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => {
-    // console.log(data.image[0]);
-    const avatar = data.image[0];
-
+  const onSubmit = async (data) => {
     const menuItem = {
-      user: user.email,
       name: data.itemName,
       category: data.category,
       price: parseFloat(data.price),
       recipe: data.recipe,
-      avatar,
+      image: data.image[0],
     };
     console.log(menuItem);
 
-    axiosSecure
-      .post(`menus/admin/item`, menuItem, {
+    await axiosSecure
+      .post("/menus/admin/item", menuItem, {
         headers: {
-          "Content-Type": "multipart/form-data",
+          "content-type": "multipart/form-data",
         },
       })
       .then((res) => {
         console.log(res);
         if (res.data.statusCode === 200) {
-          toast.success(`Add Item SuccessFully`);
+          toast.success("Item added successfully");
         }
       })
       .catch((err) => {
-        toast.error("Add Item Faild", err);
+        toast.error("Failed to add item", err);
       });
   };
+
   return (
     <div>
       <Helmet>
