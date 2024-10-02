@@ -6,11 +6,11 @@ import { toast } from "react-toastify";
 
 const AddItems = () => {
   const axiosSecure = useAxiosSecure();
-  const user = JSON.parse(localStorage.getItem("user"));
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
   const onSubmit = async (data) => {
     const menuItem = {
@@ -20,7 +20,6 @@ const AddItems = () => {
       recipe: data.recipe,
       image: data.image[0],
     };
-    console.log(menuItem);
 
     await axiosSecure
       .post("/menus/admin/item", menuItem, {
@@ -29,13 +28,13 @@ const AddItems = () => {
         },
       })
       .then((res) => {
-        console.log(res);
         if (res.data.statusCode === 200) {
           toast.success("Item added successfully");
+          reset();
         }
       })
       .catch((err) => {
-        toast.error("Failed to add item", err);
+        toast.error(`Failed to add item ${err.response.data.data}`);
       });
   };
 
@@ -86,7 +85,7 @@ const AddItems = () => {
                       <span className="label-text">Recipe Details</span>
                     </label>
                     <textarea
-                      {...register("recipe")}
+                      {...register("recipe", { required: true })}
                       className="w-full px-4 mb-2 transition duration-200 bg-transparent border border-brand inset-0 bg-opacity-100 bg-gradient-to-r from-secondary text-brand rounded   appearance-none  focus:outline-none focus:shadow-outline h-24"
                       placeholder="Bio"
                     ></textarea>
@@ -127,6 +126,9 @@ const AddItems = () => {
                       <option value="dessert">Dessert</option>
                       <option value="drinks">Drinks</option>
                     </select>
+                    {errors.category && (
+                      <span className="text-red-600">Image is required</span>
+                    )}
                   </div>
 
                   <input
