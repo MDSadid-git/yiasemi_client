@@ -16,6 +16,9 @@ import AdminHome from "../Pages/DashBoard/AdminHome/AdminHome.jsx";
 import AddItems from "../Pages/DashBoard/AddItems/AddItems.jsx";
 import ManageItems from "../Pages/DashBoard/ManageItems/ManageItems.jsx";
 import ManageBookins from "../Pages/DashBoard/ManageBookings/ManageBookins.jsx";
+import UpdateItems from "../Pages/DashBoard/UpdateItem/UpdateItems.jsx";
+import useAxiosSecure from "../Hooks/useAxiosSecure.jsx";
+const axiosSecure = useAxiosSecure();
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -91,6 +94,27 @@ export const router = createBrowserRouter([
             <ManageItems />
           </AdminRoute>
         ),
+      },
+      {
+        path: "manageItems/dashboard/updateItem/:id",
+        element: (
+          <AdminRoute>
+            <UpdateItems />
+          </AdminRoute>
+        ),
+        // loader: ({ params }) =>
+        //   fetch(`http://localhost:8000/api/v1/menus/admin/item/${params.id}`),
+        loader: async ({ params }) => {
+          try {
+            const response = await axiosSecure.get(
+              `/menus/admin/item/${params.id}`
+            );
+            return response.data;
+          } catch (error) {
+            console.error("Error loading item:", error);
+            throw error;
+          }
+        },
       },
       {
         path: "bookings",

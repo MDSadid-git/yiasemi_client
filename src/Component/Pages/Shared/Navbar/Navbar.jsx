@@ -38,7 +38,10 @@ const Navbar = () => {
   const menuItems = (
     <>
       <li className="font-bold nav-item  text-[14px] text-black  hover:text-brand duration-400">
-        <Link className="flex group items-center py-[14px] text-brand2 hover:translate-x-1 duration-300 uppercase  text-[14px] ">
+        <Link
+          to={"/"}
+          className="flex group items-center py-[14px] text-brand2 hover:translate-x-1 duration-300 uppercase  text-[14px] "
+        >
           <span>Home</span>
         </Link>
       </li>
