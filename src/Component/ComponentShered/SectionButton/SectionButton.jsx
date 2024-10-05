@@ -1,17 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const SectionButton = ({
-  sentLink = "",
-  sectionTitle = "",
-  bgColor = "bg-brand",
-}) => {
+const SectionButton = ({ sectionTitle = "", bgColor = "bg-brand" }) => {
   return (
     <div>
-      <Link
-        to={`/${sentLink}`}
-        className="relative inline-flex items-center justify-center p-4 px-6 py-1 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out border-2 border-brand rounded-full shadow-md group"
-      >
+      <button className="relative inline-flex items-center justify-center p-4 px-6 py-1 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out border-2 border-brand rounded-full shadow-md group">
         <span className="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-brand group-hover:translate-x-0 ease">
           <svg
             className="w-6 h-6"
@@ -32,7 +25,7 @@ const SectionButton = ({
           {sectionTitle}
         </span>
         <span className="relative invisible">{sectionTitle}</span>
-      </Link>
+      </button>
     </div>
   );
 };

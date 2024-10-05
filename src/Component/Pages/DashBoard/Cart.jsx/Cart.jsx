@@ -6,6 +6,7 @@ import { FaTrashAlt } from "react-icons/fa";
 
 import { toast } from "react-toastify";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   const [cart, refetch] = useCartHook();
@@ -44,7 +45,18 @@ const Cart = () => {
         </h2>
         <h2 className="font-semibold text-2xl my-2">Total Price {cartPrice}</h2>
         <div className="my-2">
-          <SectionButton sectionTitle="Pay" />
+          {cartPrice > 0 ? (
+            <Link to={"/dashboard/payment"}>
+              <SectionButton sectionTitle="Pay" />
+            </Link>
+          ) : (
+            <button
+              disabled
+              className=" block my-1 items-center justify-center px-6 py-[2px] overflow-hidden font-medium transition duration-300 ease-out border-2 text-brand3 border-brand3 rounded-full shadow-md group"
+            >
+              Pay
+            </button>
+          )}
         </div>
       </div>
       {/* table cart area  */}

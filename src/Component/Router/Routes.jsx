@@ -18,6 +18,7 @@ import ManageItems from "../Pages/DashBoard/ManageItems/ManageItems.jsx";
 import ManageBookins from "../Pages/DashBoard/ManageBookings/ManageBookins.jsx";
 import UpdateItems from "../Pages/DashBoard/UpdateItem/UpdateItems.jsx";
 import useAxiosSecure from "../Hooks/useAxiosSecure.jsx";
+import Payment from "../Pages/DashBoard/Payment/Payment.jsx";
 const axiosSecure = useAxiosSecure();
 export const router = createBrowserRouter([
   {
@@ -129,6 +130,10 @@ export const router = createBrowserRouter([
       {
         path: "cart",
         element: <Cart />,
+      },
+      {
+        path: "payment",
+        element: <Payment />,
       },
     ],
   },
