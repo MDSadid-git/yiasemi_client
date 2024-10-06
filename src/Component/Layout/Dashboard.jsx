@@ -14,7 +14,7 @@ import { FaListCheck } from "react-icons/fa6";
 import useAdmin from "../Hooks/useAdmin";
 
 const Dashboard = () => {
-  const [isAdmin] = useAdmin();
+  const [isAdmin, isAdminPending] = useAdmin();
   return (
     <div>
       <Navbar></Navbar>
