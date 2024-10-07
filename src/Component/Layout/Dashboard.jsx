@@ -86,10 +86,10 @@ const Dashboard = () => {
                 </li>
                 <li>
                   <NavLink
-                    to="/dashboard/cart"
+                    to="/dashboard/paymenthistory"
                     className="flex justify-start items-center mt-1 bg-brand w-[80%] rounded-md mx-auto text-white font-semibold py-1"
                   >
-                    <FaCalendarAlt className="mr-1 ml-3" /> User Reservation
+                    <FaCalendarAlt className="mr-1 ml-3" /> Payment History
                   </NavLink>
                 </li>
                 <li>

@@ -19,6 +19,7 @@ import ManageBookins from "../Pages/DashBoard/ManageBookings/ManageBookins.jsx";
 import UpdateItems from "../Pages/DashBoard/UpdateItem/UpdateItems.jsx";
 import useAxiosSecure from "../Hooks/useAxiosSecure.jsx";
 import Payment from "../Pages/DashBoard/Payment/Payment.jsx";
+import PaymentHistory from "../Pages/DashBoard/PaymentHistory/PaymentHistory.jsx";
 const axiosSecure = useAxiosSecure();
 export const router = createBrowserRouter([
   {
@@ -134,6 +135,10 @@ export const router = createBrowserRouter([
       {
         path: "payment",
         element: <Payment />,
+      },
+      {
+        path: "paymenthistory",
+        element: <PaymentHistory />,
       },
     ],
   },
