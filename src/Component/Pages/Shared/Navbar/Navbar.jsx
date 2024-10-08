@@ -4,10 +4,13 @@ import "./Navbar.css";
 import { useSelector } from "react-redux";
 import { FaShoppingCart } from "react-icons/fa";
 import useCartHook from "../../../Hooks/useCartHook";
+import useAdmin from "../../../Hooks/useAdmin";
 
 const Navbar = () => {
   // yiasemi login & logout area start
   const localUser = localStorage.getItem("user");
+  const loginUser = JSON.parse(localStorage.getItem("user"));
+  const [isAdmin, isAdminPending, refetch] = useAdmin();
   const storedUser = useSelector((state) => state.user);
   const [user, setUser] = useState(null);
   const [cart] = useCartHook();
@@ -23,7 +26,7 @@ const Navbar = () => {
     } else {
       setUser(null);
     }
-  }, [localUser]);
+  }, [localUser, isAdmin, refetch()]);
 
   const handleLogout = () => {
     localStorage.removeItem("user");
@@ -68,6 +71,30 @@ const Navbar = () => {
           Order
         </Link>
       </li>{" "}
+      {loginUser && isAdmin && (
+        <li className="font-bold nav-item  text-[14px] text-black  hover:text-brand duration-300">
+          <Link
+            onClick={isMenuOpen}
+            title="dashboard"
+            to="/dashboard/adminHome"
+            className="flex group items-center py-[14px] text-brand2 hover:translate-x-1 duration-300 uppercase  text-[14px]"
+          >
+            Dashboard
+          </Link>
+        </li>
+      )}
+      {loginUser && !isAdmin && (
+        <li className="font-bold nav-item  text-[14px] text-black  hover:text-brand duration-300">
+          <Link
+            onClick={isMenuOpen}
+            title="dashboard"
+            to="/dashboard/userhome"
+            className="flex group items-center py-[14px] text-brand2 hover:translate-x-1 duration-300 uppercase  text-[14px]"
+          >
+            Dashboard
+          </Link>
+        </li>
+      )}
       <li className="font-bold nav-item  text-[14px] text-black  hover:text-brand duration-300">
         <Link
           onClick={isMenuOpen}
@@ -76,12 +103,12 @@ const Navbar = () => {
           className="flex group items-center py-[14px] text-brand2 hover:translate-x-1 duration-300 uppercase  text-[14px]"
         >
           <FaShoppingCart size={18} />
-          <span className="text-brand mb-3">+{user ? cartLenght : 0}</span>
+          <span className="text-brand mb-3">+{loginUser ? cartLenght : 0}</span>
         </Link>
       </li>{" "}
       {/* Yiasem all menu end */}
       {/* Yiasem user login and register area start */}
-      {user ? (
+      {loginUser ? (
         <button
           onClick={handleLogout}
           className=" cursor-pointer block my-1 items-center justify-center  px-6 py-[2px] overflow-hidden font-medium  transition duration-300 ease-out border-2 border-brand rounded-full shadow-md group"

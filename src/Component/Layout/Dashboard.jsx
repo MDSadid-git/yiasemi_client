@@ -1,4 +1,4 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import Navbar from "../Pages/Shared/Navbar/Navbar";
 import {
   FaAd,
@@ -12,15 +12,24 @@ import {
 } from "react-icons/fa";
 import { FaListCheck } from "react-icons/fa6";
 import useAdmin from "../Hooks/useAdmin";
+import { useEffect } from "react";
 
 const Dashboard = () => {
-  const [isAdmin, isAdminPending] = useAdmin();
+  const user = JSON.parse(localStorage.getItem("user"));
+  const navigate = useNavigate();
+  const [isAdmin, isAdminPending, refetch] = useAdmin();
+  useEffect(() => {
+    if (user == null) {
+      navigate("/login");
+    }
+  }, [user]);
+
   return (
     <div>
       <Navbar></Navbar>
       <div className="flex">
         <div className="w-64 min-h-screen bg-brand2">
-          {isAdmin ? (
+          {isAdmin && user ? (
             <>
               <ul>
                 <li>
@@ -70,7 +79,7 @@ const Dashboard = () => {
               <ul>
                 <li>
                   <NavLink
-                    to="/dashboard/cart"
+                    to="/dashboard/userhome"
                     className="flex justify-start items-center mt-4 bg-brand w-[80%] rounded-md mx-auto text-white font-semibold py-1"
                   >
                     <FaHome className="mr-1 ml-3" /> user Home

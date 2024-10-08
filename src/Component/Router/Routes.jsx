@@ -20,6 +20,7 @@ import UpdateItems from "../Pages/DashBoard/UpdateItem/UpdateItems.jsx";
 import useAxiosSecure from "../Hooks/useAxiosSecure.jsx";
 import Payment from "../Pages/DashBoard/Payment/Payment.jsx";
 import PaymentHistory from "../Pages/DashBoard/PaymentHistory/PaymentHistory.jsx";
+import UserHome from "../Pages/DashBoard/UserHome/UserHome.jsx";
 const axiosSecure = useAxiosSecure();
 export const router = createBrowserRouter([
   {
@@ -139,6 +140,10 @@ export const router = createBrowserRouter([
       {
         path: "paymenthistory",
         element: <PaymentHistory />,
+      },
+      {
+        path: "userhome",
+        element: <UserHome />,
       },
     ],
   },
