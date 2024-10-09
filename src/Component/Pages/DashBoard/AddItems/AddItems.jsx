@@ -120,11 +120,32 @@ const AddItems = () => {
                       <option disabled value="default">
                         Select a category
                       </option>
-                      <option value="salad">Salad</option>
-                      <option value="pizza">Pizza</option>
-                      <option value="soup">Soup</option>
-                      <option value="dessert">Dessert</option>
-                      <option value="drinks">Drinks</option>
+                      <option value="Cold Coffee">Cold Coffee</option>
+                      <option value="Hot Coffee">Hot Coffee</option>
+                      <option value="Water & Soft Drinks">
+                        Water & Soft Drinks
+                      </option>
+                      <option value="Energy Drinks">Energy Drinks</option>
+                      <option value="Fresh Juices">Fresh Juices</option>
+                      <option value="Your Choice Of Tea">
+                        Your Choice Of Tea
+                      </option>
+                      <option value="Pizza">Pizza</option>
+                      <option value="Pasta">Pasta</option>
+                      <option value="Morning Breakkfast">
+                        Morning Breakkfast
+                      </option>
+                      <option value="The CottageCakes, Pancakes, Waffle & More">
+                        The CottageCakes, Pancakes, Waffle & More
+                      </option>
+                      <option value="Mojito">Mojito</option>
+                      <option value="Cold Appetizers & Salads">
+                        Cold Appetizers & Salads
+                      </option>
+                      <option value="Hot Appetisers">Hot Appetisers</option>
+                      <option value="Sandwiches">Sandwiches</option>
+                      <option value="Yiasemi Bakery">Yiasemi Bakery</option>
+                      <option value="Hookah">Hookah</option>
                     </select>
                     {errors.category && (
                       <span className="text-red-600">Image is required</span>

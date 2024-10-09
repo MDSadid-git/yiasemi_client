@@ -15,7 +15,7 @@ const useAdmin = () => {
       return res.data;
     },
   });
-  return [isAdmin, isAdminPending, refetch];
+  return [isAdmin, isAdminPending, refetch, user];
 };
 
 export default useAdmin;
