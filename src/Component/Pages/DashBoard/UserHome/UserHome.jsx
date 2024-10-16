@@ -1,7 +1,19 @@
 import React from "react";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
+import { Link } from "react-router-dom";
 
 const UserHome = () => {
   const user = JSON.parse(localStorage.getItem("user"));
+  const axiosSecure = useAxiosSecure();
+  const { data } = useQuery({
+    queryKey: ["user-state"],
+    queryFn: async () => {
+      const res = await axiosSecure.get("/users/user-profile-stats");
+      return res.data.data;
+    },
+  });
+
   return (
     <div>
       <div>
@@ -95,10 +107,18 @@ const UserHome = () => {
               <h2 className="title-font text-2xl font-medium text-gray-900 mt-6 mb-3">
                 Your Activites
               </h2>
-              <h3 className="text-lg font-semibold">Order:</h3>
-              <h3 className="text-lg font-semibold">Reviews:</h3>
-              <h3 className="text-lg font-semibold">Bookings:</h3>
-              <h3 className="text-lg font-semibold">Payment:</h3>
+              <Link to={"dashboard/cart"} className="text-lg font-semibold">
+                Order : {data?.[0]?.orderResult?.length}
+              </Link>
+              <Link to={"dashboard/review"} className="text-lg font-semibold">
+                Reviews : {data?.[0]?.reviewResult?.length}
+              </Link>
+              <h3 className="text-lg font-semibold">
+                Bookings : {data?.[0]?.bookingResult?.length}
+              </h3>
+              <h3 className="text-lg font-semibold">
+                Payment : {data?.[0]?.paymentResult?.length}
+              </h3>
             </div>
           </div>
         </div>

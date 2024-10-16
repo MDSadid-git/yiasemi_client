@@ -134,6 +134,14 @@ const Dashboard = () => {
                     to="/dashboard/reviews"
                     className="flex justify-start items-center mt-1 bg-brand w-[80%] rounded-md mx-auto text-white font-semibold py-1"
                   >
+                    <FaAd className="mr-1 ml-3" /> My Reviews
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/reviews"
+                    className="flex justify-start items-center mt-1 bg-brand w-[80%] rounded-md mx-auto text-white font-semibold py-1"
+                  >
                     <FaAd className="mr-1 ml-3" /> Add Reviews
                   </NavLink>
                 </li>
