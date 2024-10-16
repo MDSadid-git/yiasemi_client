@@ -113,12 +113,15 @@ const UserHome = () => {
               <Link to={"dashboard/review"} className="text-lg font-semibold">
                 Reviews : {data?.[0]?.reviewResult?.length}
               </Link>
-              <h3 className="text-lg font-semibold">
+              <Link to={"dashboard/booking"} className="text-lg font-semibold">
                 Bookings : {data?.[0]?.bookingResult?.length}
-              </h3>
-              <h3 className="text-lg font-semibold">
+              </Link>
+              <Link
+                to={"dashboard/payment-history"}
+                className="text-lg font-semibold"
+              >
                 Payment : {data?.[0]?.paymentResult?.length}
-              </h3>
+              </Link>
             </div>
           </div>
         </div>
