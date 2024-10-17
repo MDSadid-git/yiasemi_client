@@ -23,6 +23,7 @@ import PaymentHistory from "../Pages/DashBoard/PaymentHistory/PaymentHistory.jsx
 import UserHome from "../Pages/DashBoard/UserHome/UserHome.jsx";
 import ReviewUser from "../Pages/DashBoard/ReviewUser/ReviewUser.jsx";
 import BookingUser from "../Pages/DashBoard/BookingUser/BookingUser.jsx";
+import AddReviewUser from "../Pages/DashBoard/AddReviewUser/AddReviewUser.jsx";
 const axiosSecure = useAxiosSecure();
 export const router = createBrowserRouter([
   {
@@ -146,6 +147,10 @@ export const router = createBrowserRouter([
       {
         path: "userhome",
         element: <UserHome />,
+      },
+      {
+        path: "addreview",
+        element: <AddReviewUser />,
       },
       {
         path: "userhome/dashboard/cart",
