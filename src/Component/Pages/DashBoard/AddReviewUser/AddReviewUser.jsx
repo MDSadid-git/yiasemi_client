@@ -96,11 +96,6 @@ const AddReviewUser = () => {
                     onChange={setRating}
                     isRequired
                   />
-                  {errors.details && (
-                    <span className="text-red-600">
-                      {errors.details.message}
-                    </span>
-                  )}
 
                   <input
                     className="inline-flex cursor-pointer my-5 items-center justify-center p-4 px-6 py-1 overflow-hidden font-medium transition duration-300 ease-out border-2 border-brand rounded-full shadow-md group"

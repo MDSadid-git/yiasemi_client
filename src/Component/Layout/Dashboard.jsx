@@ -131,7 +131,7 @@ const Dashboard = () => {
                 </li>
                 <li>
                   <NavLink
-                    to="/dashboard/reviews"
+                    to="/dashboard/userhome/dashboard/review"
                     className="flex justify-start items-center mt-1 bg-brand w-[80%] rounded-md mx-auto text-white font-semibold py-1"
                   >
                     <FaAd className="mr-1 ml-3" /> My Reviews
@@ -147,10 +147,18 @@ const Dashboard = () => {
                 </li>
                 <li>
                   <NavLink
-                    to="/dashboard/bookings"
+                    to="userhome/dashboard/booking"
                     className="flex justify-start items-center mt-1 bg-brand w-[80%] rounded-md mx-auto text-white font-semibold py-1"
                   >
                     <FaListCheck className="mr-1 ml-3" /> My Bookings
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="userhome/dashboard/add-booking"
+                    className="flex justify-start items-center mt-1 bg-brand w-[80%] rounded-md mx-auto text-white font-semibold py-1"
+                  >
+                    <FaListCheck className="mr-1 ml-3" /> Add Bookings
                   </NavLink>
                 </li>
               </ul>

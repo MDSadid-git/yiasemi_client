@@ -8,14 +8,20 @@ import { Navigation } from "swiper/modules";
 
 import "@smastrom/react-rating/style.css";
 import { Rating } from "@smastrom/react-rating";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
 
 const Testimonials = () => {
-  const [reviews, setreviews] = useState([]);
-  useEffect(() => {
-    fetch("./review.json")
-      .then((res) => res.json())
-      .then((data) => setreviews(data));
+  const axiosSecure = useAxiosSecure();
+
+  const { data: reviews = [], refetch } = useQuery({
+    queryKey: ["review"],
+    queryFn: async () => {
+      const res = await axiosSecure.get("/reviews/all-reviews");
+      return res.data.data;
+    },
   });
+
   return (
     <div className="max-w-screen-xl mx-auto my-5 px-5">
       <SectionTitle heading="What Our Client Say" subHeading="Testimonial" />
