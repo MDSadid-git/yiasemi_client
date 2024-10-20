@@ -23,7 +23,7 @@ const AddReviewUser = () => {
       details: data.details,
       rating: rating,
     };
-    console.log(userReviews);
+
     await axiosSecure
       .post("/reviews/add-reviews", userReviews)
       .then((res) => {
