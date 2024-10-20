@@ -2,6 +2,7 @@ import React from "react";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import SectionTitle from "../../../ComponentShered/SectionTitile/SectionTitle";
+import { Helmet } from "react-helmet-async";
 
 const BookingUser = () => {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -17,9 +18,13 @@ const BookingUser = () => {
 
   return (
     <div>
-      <section>
+      <Helmet>
+        {" "}
+        <title>Yiasemi Lounge \ Booking History </title>
+      </Helmet>
+      <section className="-mt-7">
         <SectionTitle
-          heading="Booking History"
+          heading={`${user.userName} Booking History`}
           subHeading="This is all Booking History"
         />
       </section>
