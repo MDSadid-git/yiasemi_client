@@ -14,7 +14,6 @@ const PaymentHistory = () => {
       return res.data;
     },
   });
-  console.log(userPaymentHistory);
 
   return (
     <div>
