@@ -14,8 +14,6 @@ const BookingUser = () => {
       return res.data.data;
     },
   });
-  console.log(data);
-
   return (
     <div>
       <Helmet>
